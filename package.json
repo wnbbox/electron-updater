@@ -1,60 +1,77 @@
 {
-  "name": "electron-updater",
-  "version": "0.0.2",
-  "description": "Testing Electron updater",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wnbbox/electron-updater.git"
-  },
-  "author": "Nenad Djordjevic",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/wnbbox/electron-updater/issues"
-  },
-  "homepage": "https://github.com/wnbbox/electron-updater#readme",
-  "devDependencies": {
-    "@electron-forge/cli": "^6.0.4",
-    "@electron-forge/maker-zip": "^6.0.4",
-    "@electron-forge/publisher-github": "^6.0.4",
-    "electron": "^22.0.0"
-  },
-  "config": {
-    "forge": {
-      "packagerConfig": {
-        "name": "ElectronUpdater",
-        "executableName": "ElectronUpdater"
-      },
-      "makers": [
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        }
-      ],
-      "publishers": [
-        {
-          "name": "@electron-forge/publisher-github",
-          "config": {
-            "repository": {
-              "owner": "wnbbox",
-              "name": "electron-updater"
+    "name": "electron-updater",
+    "version": "0.0.5",
+    "description": "Testing Electron updater",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron-forge start",
+        "package": "electron-forge package",
+        "make": "electron-forge make",
+        "publish": "electron-forge publish"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/wnbbox/electron-updater.git"
+    },
+    "author": "Nenad Djordjevic",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/wnbbox/electron-updater/issues"
+    },
+    "homepage": "https://github.com/wnbbox/electron-updater#readme",
+    "devDependencies": {
+        "@electron-forge/cli": "^6.0.4",
+        "@electron-forge/maker-zip": "^6.0.4",
+        "@electron-forge/publisher-github": "^6.0.4",
+        "electron": "^22.0.0"
+    },
+    "config": {
+        "forge": {
+            "packagerConfig": {
+                "name": "ElectronUpdater",
+                "executableName": "ElectronUpdater",
+                "asar": {
+                    "unpack": "**/*.+(node|dylib|dll|exe|applescript)",
+                    "smartUnpack": true
+                },
+                "appBundleId": "com.wnbbox.BlackBoxElectron",
+                "osxSign": {
+                    "identity": "Developer ID Application: Wnbbox AB (3HF4KD8S6X)",
+                    "hardened-runtime": true,
+                    "entitlements": "entitlements.plist",
+                    "entitlements-inherit": "entitlements.plist",
+                    "signature-flags": "library"
+                },
+                "osxNotarize": {
+                    "appleId": "nenad@wnbbox.com",
+                    "appleIdPassword": "xyes-urbf-ggkd-ydfi",
+                    "ascProvider": "3HF4KD8S6X"
+                }
             },
-            "prerelease": false,
-            "draft": true
-          }
+            "makers": [
+                {
+                    "name": "@electron-forge/maker-zip",
+                    "platforms": [
+                        "darwin"
+                    ]
+                }
+            ],
+            "publishers": [
+                {
+                    "name": "@electron-forge/publisher-github",
+                    "config": {
+                        "repository": {
+                            "owner": "wnbbox",
+                            "name": "electron-updater"
+                        },
+                        "prerelease": false,
+                        "draft": true
+                    }
+                }
+            ]
         }
-      ]
+    },
+    "dependencies": {
+        "update-electron-app": "^2.0.1"
     }
-  },
-  "dependencies": {
-    "update-electron-app": "^2.0.1"
-  }
 }
