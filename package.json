@@ -4,8 +4,10 @@
   "description": "Testing Electron updater",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
-    "test": "npm run test"
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish"
   },
   "repository": {
     "type": "git",
@@ -18,7 +20,38 @@
   },
   "homepage": "https://github.com/wnbbox/electron-updater#readme",
   "devDependencies": {
+    "@electron-forge/cli": "^6.0.4",
+    "@electron-forge/maker-dmg": "^6.0.4",
     "@electron-forge/publisher-github": "^6.0.4",
     "electron": "^22.0.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "name": "ElectronUpdater",
+        "executableName": "ElectronUpdater"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-dmg",
+          "platforms": [
+            "darwin"
+          ]
+        }
+      ],
+      "publishers": [
+        {
+          "name": "@electron-forge/publisher-github",
+          "config": {
+            "repository": {
+              "owner": "wnbbox",
+              "name": "electron-updater"
+            },
+            "prerelease": false,
+            "draft": true
+          }
+        }
+      ]
+    }
   }
 }
