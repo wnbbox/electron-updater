@@ -1,0 +1,24 @@
+{
+  "name": "electron-updater",
+  "version": "0.0.1",
+  "description": "Testing Electron updater",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wnbbox/electron-updater.git"
+  },
+  "author": "Nenad Djordjevic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wnbbox/electron-updater/issues"
+  },
+  "homepage": "https://github.com/wnbbox/electron-updater#readme",
+  "devDependencies": {
+    "@electron-forge/publisher-github": "^6.0.4",
+    "electron": "^22.0.0"
+  }
+}
